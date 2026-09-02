@@ -22,3 +22,10 @@ matrixmedia/*.exe(71MB 上游 GPL 安装包→README 指引去 hanliang97/Matrix
 ## 4. 维护约定
 - Windows: start.bat（内嵌 runtime 优先→cache 自动 install→系统 Python 三级回退）/ stop.bat / install.bat / scripts\run_tests.bat
 - 改动后同步 README/DEPLOY/本文件；提交 `git push origin main`；中文 UTF-8、bat 纯 ASCII+CRLF+无 BOM（去 chcp）
+---
+### 关键点（2026-09-02 上传整理补充）
+- 调度：watch 任务文件夹 → pending → 调 MatrixMedia HTTP API(127.0.0.1:30088) → success/fail 归档；平台 dy/ks/blbl/tt/bjh/sph/xhs/fqsp；MD5 去重/重试3次/定时/SQLite
+- config.yaml 只放"别名→手机号"，真实手机号与平台登录态仅本机，勿 commit
+- MatrixMedia 71MB 上游 GPL 安装包不入库 → matrixmedia/README 指引去 hanliang97/MatrixMedia Releases 下载
+- 自测用模拟 API 31088（免账号）；start.bat：内嵌 runtime → cache 自动 install → 系统 python 三级回退
+- 合规风险见 README 免责声明
