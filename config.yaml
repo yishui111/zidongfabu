@@ -1,0 +1,38 @@
+# 多平台视频自动发布调度服务配置文件
+# 路径均相对于本项目根目录
+
+matrix_api:
+  base_url: "http://127.0.0.1:30088"   # MatrixMedia 内置 HTTP API 地址
+  timeout: 1800                        # 单平台发布最长等待（秒）
+  poll_interval: 3                     # 等待 API 就绪的轮询间隔
+  ready_timeout: 120                   # 等待 API 就绪的最长时间
+
+dirs:
+  watch: "watch"                       # 放入待发布任务文件夹
+  pending: "pending"                   # 处理中/定时等待
+  success: "success"                   # 发布成功（含重复）
+  fail: "fail"                         # 发布失败（保留 result.json 供排查）
+  logs: "logs"
+  data: "data"
+
+publish:
+  dry_run: false                       # true = 模拟发布，不调真实接口（测试用）
+  retry_times: 3                       # 每个平台最多尝试次数
+  retry_delays: [10, 30, 60]           # 各次重试前等待秒数
+  per_platform_delay: 5                # 平台之间的间隔秒数（降低风控风险）
+  scan_interval: 3                     # 扫描 watch/ 间隔（秒）
+  pending_check_interval: 30           # 定时任务检查间隔（秒）
+  default_platforms: []                # info.json 未指定平台时的默认平台，如 ["dy","sph"]
+  default_title: "未命名视频"
+
+dedup: true                            # 同一视频（MD5）只允许发布一次
+
+# 账号别名 -> 手机号（与 MatrixMedia「账号管理」中的账号手机号一致）
+# 任务 info.json 里只写别名，不写手机号，避免敏感信息泄露
+accounts:
+  # dy-01: "13800138000"
+  # sph-01: "13900139000"
+
+logging:
+  level: "INFO"
+  keep_days: 30

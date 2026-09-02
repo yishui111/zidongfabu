@@ -1,0 +1,12 @@
+{
+  "title": "示例视频标题",
+  "platforms": ["dy", "sph", "ks"],
+  "account": "dy-01",
+  "accounts": {
+    "dy": "dy-01",
+    "sph": "sph-01"
+  },
+  "tags": "标签1 标签2",
+  "bt2": "视频号短标题（可选）",
+  "publish_at": null
+}
